@@ -1,0 +1,55 @@
+<html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>brainspell training wheels</title>
+    <link rel="shortcut icon" type="image/x-icon" href="<!--ROOTDIR-->img/favicon.ico">
+	<script>var	rootdir="<!--ROOTDIR-->";</script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+
+<table style="width:100%">
+<tr>
+    <td>
+        <a href="<!--ROOTDIR-->">
+            <h1><img src="<!--ROOTDIR-->img/brainspell.svg" alt="brainSpell"/></h1>
+        </a>
+    </td>
+    <td>
+        <ul class="fr">
+            <li class="login"></li>
+            <li><a href="<!--ROOTDIR-->blog" class="nav">BLOG</a></li>
+            <li><a href="<!--ROOTDIR-->about" class="nav">ABOUT</a></li>
+            <li><a href="<!--ROOTDIR-->download" class="nav">DOWNLOAD</a></li>
+        </ul>
+    </td>
+</tr>
+</table>
+
+<!-- Main content  -->
+<!--%Core%-->
+
+<p>A simple footer</p>
+
+<button id='give-me-something'>Give me somthing</button>
+<script>
+$('#give-me-something').click(function () {
+    var filename="Test";
+    var csvfile=["Articles", "\narticle1", "\narticle2", "\narticle3"]
+    var csvData = 'data:text/json;charset=utf-8,'+ encodeURIComponent(csvfile);
+    var a = document.createElement('a');
+    a.href = csvData;
+    a.download = filename+'.csv';
+    document.body.appendChild(a);
+    a.click();
+});
+</script>
+
+
+
+
+</body>
+
+</html>
