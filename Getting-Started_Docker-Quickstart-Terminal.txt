@@ -1,0 +1,50 @@
+0a. Make sure you downloaded the docker toolbox (https://www.docker.com/products/docker-toolbox)
+
+0b. Ensure you have VirtualBox installed.
+
+1. Go into the dav branch.
+
+git checkout dav
+
+2. Go into the docker folder.
+
+cd docker
+
+3. Build the image and launch the container.
+
+docker-compose up
+
+5. Check the host ip.
+
+docker-machine ip
+
+6. Open a browser (use Firefox or Internet Explorer) and type/copy-paste the resulting ip address in step (5) into the address bar. If you are using docker quickstart, it is 192.168.99.100:8000.
+
+7. You should see the brainspell webpage. :)
+
+Troubleshooting:
+
+Internet connection error
+Note: Although, even though your computer is connected to the internet, your virtual machine (VM) may not be. This could be because you have changed internet connections.
+
+0a. Connect to the internet. 
+
+1. Stop the VM.
+
+docker-machine Stop
+
+2. Start the VM.
+
+docker-machine start
+
+3. Evaluate the environment (if everything is ok, there will be no output).
+
+eval $(docker-machine env)
+
+4. Check the VM connection by test-running hello-world.
+
+docker run hello-world
+
+5. If the VM is connected, try to build the image and launch the container.
+
+docker-compose up
