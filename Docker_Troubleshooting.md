@@ -16,9 +16,9 @@
 _**Note**: Although, even though your computer is connected to the internet, your virtual machine (VM) may not be. This could be because you have changed internet connections. If this is the case, just close docker and re-open it._
 <ol>
 <li>Ensure your computer is connected to the internet. </li>
-<li>`docker-machine Stop` Stop the VM.</li>
-<li>`docker-machine start` Start the VM.</li>
-<li>`eval $(docker-machine env)` Evaluate the environment (if everything is ok, there will be no output).</li>
-<li>`docker run hello-world` Check the VM connection by test-running hello-world.</li>
-<li>`docker-compose up` If the VM is connected, try to build the image and launch the container.</li>
+<li><code>docker-machine Stop</code> Stop the VM.</li>
+<li><code>docker-machine start</code> Start the VM.</li>
+<li><code>eval $(docker-machine env)</code> Evaluate the environment (if everything is ok, there will be no output).</li>
+<li><code>docker run hello-world</code> Check the VM connection by test-running hello-world.</li>
+<li><code>docker-compose up</code> If the VM is connected, try to build the image and launch the container.</li>
 </ol>
