@@ -1,6 +1,6 @@
 #Setting Up Docker + Troubleshooting
 ##Prerequisites
-<p>0a. Make sure you downloaded the [docker toolbox](https://www.docker.com/products/docker-toolbox)</p>
+<p>0a. Make sure you downloaded the <a href="https://www.docker.com/products/docker-toolbox">Docker Toolbox</a>.</p>
 <p>0b. Ensure you have VirtualBox installed.</p>
 
 ##Docker Compose
