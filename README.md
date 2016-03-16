@@ -2,9 +2,7 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BIDS-collaborative/brainspell?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-The BIDS collaborative fork of the brainspell project. Useful innovations will
-be merged upstream into @r03ert0's repo (see the "forked from" link at the top
-of our GitHub page).
+`brainspell` is a web platform to facilitate the creation of an open, human-curated, classification of the neuroimaging literature.
 
 The application has been completely dockerized. If you have a properly
 configured docker-compose installation, you should be able to execute
@@ -30,6 +28,3 @@ the background. CTR-C or run `docker-compose stop` to stop the containters.
 On a linux install, the brainspell search did not work until you the 
 LuceneIndex directory was made writable by all, in the brainspell repository run:
 `chmod a+w LuceneIndex/*` or `sudo chmod a+w LuceneIndex/*`
-
-
-
