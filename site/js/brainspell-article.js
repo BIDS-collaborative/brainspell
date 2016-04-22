@@ -10,6 +10,9 @@ var exp;
 var ArticlePMID;
 var EmptyArticle;
 
+// Arshad trying the git workflow
+
+
 function updateArticle()
 {
 	if(debug) console.log("[updateArticle] Login update at article level (Login: "+(loggedin?"Yes":"No")+")");
