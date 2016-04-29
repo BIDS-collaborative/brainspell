@@ -4,7 +4,7 @@ var	tasks;
 var	cognitive;
 var	behavioural;
 var	concept;
-var	minVotes=0;	// Minimum number of votes a tag must have to be displayed	
+var	minVotes=0;	// Minimum number of votes a tag must have to be displayed
 var meta;
 var exp;
 var ArticlePMID;
@@ -13,7 +13,7 @@ var EmptyArticle;
 function updateArticle()
 {
 	if(debug) console.log("[updateArticle] Login update at article level (Login: "+(loggedin?"Yes":"No")+")");
-	
+
 	/*
 		Article-level display
 		---------------------
@@ -29,7 +29,7 @@ function updateArticle()
 				var rtag=exp[-1].tags[j];
 				rtag.agree=(rtag.agree)?parseInt(rtag.agree):0;
 				rtag.disagree=(rtag.disagree)?parseInt(rtag.disagree):0;
-				
+
 				var	prevVote=findPreviousVoteByUser(-1,rtag);
 				if(rtag.agree+rtag.disagree>=minVotes || prevVote!=0)
 					addTagColor(iExp,rtag);
@@ -40,7 +40,7 @@ function updateArticle()
 
 		// New article warning
 		$("#new-article-warning button").removeAttr('disabled');
-		
+
 		// Metadata stereotaxic space
 		$("span#Talairach").show();
 		$("span#MNI").show();
@@ -60,7 +60,7 @@ function updateArticle()
 				$("span#MNI").html('('+meta.stereo.MNI+')');
 			}
 		}
-		
+
 		// Metadata number of subjects
 		$("input#nSubjects").removeAttr('disabled');
 		$("span#nSubjects").show();
@@ -95,7 +95,7 @@ function updateArticle()
 			$('button#disagree').removeAttr('disabled');
 			$('.buttonsThing div#login-message').remove();
 		}
-				
+
 		// Discussion text area
 		$("button#comment").removeAttr('disabled');
 		$("span#commentWarning").hide();
@@ -104,7 +104,7 @@ function updateArticle()
 	{
 		// New article warning
 		$("#new-article-warning button").attr('disabled',true);
-		
+
 		// Metadata stereotaxic space
 		$("input:radio[value='Talairach']").attr('disabled',true);
 		$("input:radio[value='MNI']").attr('disabled',true);
@@ -126,7 +126,7 @@ function updateArticle()
 			$("span#Talairach").hide();
 			$("span#MNI").hide();
 		}
-		
+
 		// Metadata number of subjects
 		$("input#nSubjects").attr('disabled',true);
 		if(meta.nsubjects && meta.nsubjects.length>=minVotes)
@@ -179,7 +179,7 @@ function findIndexOfExperimentByEID(eid) {
 function updateExperiment(eid/*iExp*/)
 {
 	if(debug) console.log("[updateExperiment] Login update at experiment "+eid/*iExp*/+" (Login: "+(loggedin?"Yes":"No")+")");
-	
+
 	/*
 		Experiment-level display
 		------------------------
@@ -222,7 +222,7 @@ function updateExperiment(eid/*iExp*/)
 			if(debug) console.log("[updateExperiment] eid:",eid/*iExp*/,"markbad:",markBadTable);
 			$(".experiment#"+eid/*iExp*/+":first span#Yes").html('('+markBadTable.ok+')');
 			$(".experiment#"+eid/*iExp*/+":first span#No").html('('+markBadTable.bad+')');
-		
+
 			if(markBadTable.bad>markBadTable.ok)
 				$(".experiment#"+eid/*iExp*/+":first .tableAlert ").html('<img src="/img/alert.svg" style="height:0.8rem;display:inline;position:relative;top:0rem"/>This table may be incorrect');
 			else
@@ -231,7 +231,7 @@ function updateExperiment(eid/*iExp*/)
 		else
 		{
 			$(".experiment#"+eid/*iExp*/+":first span#Yes").html('');
-			$(".experiment#"+eid/*iExp*/+":first span#No").html('');			
+			$(".experiment#"+eid/*iExp*/+":first span#No").html('');
 		}
 		if(prevMark>-1)
 		{
@@ -243,7 +243,7 @@ function updateExperiment(eid/*iExp*/)
 			$(".experiment#"+eid/*iExp*/+" input:radio[value='Yes']").removeAttr('checked');
 			$(".experiment#"+eid/*iExp*/+" input:radio[value='No']").removeAttr('checked');
 		}
-	
+
 		// Experiment tags (specific)
 		if(ex.tags)
 			for(j=0;j<ex.tags.length;j++)
@@ -251,7 +251,7 @@ function updateExperiment(eid/*iExp*/)
 				var rtag=ex.tags[j];
 				rtag.agree=(rtag.agree)?parseInt(rtag.agree):0;
 				rtag.disagree=(rtag.disagree)?parseInt(rtag.disagree):0;
-			
+
 				// Show tags only if there are at least minVotes votes,
 				// or if the current user voted for it
 				var	prevVote=findPreviousVoteByUser(eid/*iExp*/,rtag);
@@ -274,7 +274,7 @@ function updateExperiment(eid/*iExp*/)
 		$(".experiment#"+eid/*iExp*/+" td.input").hide();
 		$(".experiment#"+eid/*iExp*/+" .tableActions").hide();
 	}
-	
+
 	// Adjust locations table height
 	var padd,legendheight,xyzhdrheight,ontheight,tableActionsHeight;
 	padd=parseInt($('.experiment#'+eid/*iExp*/).css('padding-top'));
@@ -296,7 +296,7 @@ function initBrainSpellArticle()
 	htmlTag.className = (htmlTag.className + ' ' || '') + 'hasJS';
 	if ('ontouchstart' in document.documentElement)
 		htmlTag.className = (htmlTag.className + ' ' || '') + 'isTouch';
-	
+
 	$.get(rootdir+"templates/cogatlas-tasks.html",function(data){tasks=data;if(debug) console.log("[init] Tasks loaded");});
 	$.get(rootdir+"templates/cogatlas-cognitive.html",function(data){cognitive=data;if(debug) console.log("[init] Cognitive domains loaded");});
 	$.get(rootdir+"templates/brainmap-behavioural.html",function(data){behavioural=data;if(debug) console.log("[init] Behavioural domains loaded");});
@@ -310,14 +310,14 @@ function initBrainSpellArticle()
 	$("#doi").click(function(){window.location=$(this).attr('href')});
 	$("#neurosynth").click(function(){window.location=$(this).attr('href')});
 	$("#download").click(function(){downloadArticle()});
-	
+
 	ArticlePMID=$("#pmid").attr("href").split("/")[4];
 	if(debug) console.log("Article's PMID",ArticlePMID);
 
 	if(exp_string=="<!--Experiments-->")
 	{
 		if(debug) console.log("[initBrainSpellArticle] Article not in DB, search pubmed");
-		$("#new-article-warning").show();			
+		$("#new-article-warning").show();
 		downloadArticleXML();
 	}
 	else
@@ -357,7 +357,7 @@ function downloadArticle() {
 		"Abstract: "+$(".abstract").text(),
 		""
 	].join("\n");
-	
+
 	for(i=0;i<exp.length;i++) {
 		var str1=[
 			"Title: "+exp[i].title,
@@ -387,16 +387,16 @@ function downloadArticleXML(callback)
 		{"db":"pubmed","id":ArticlePMID,"report":"xml"},
 		function(xml) {
 			parseArticleXML(xml);
-						
+
 			// Display information in webpage
 			$("h2.paper-title").html(EmptyArticle.title);
 			$("div.abstract").html(EmptyArticle.abstract);
 			$("#reference").html(EmptyArticle.reference);
 			$("#doi").attr("href","http://dx.doi.org/"+EmptyArticle.doi);
-			
+
 			configureMetadata();
 			updateArticle();
-			
+
 			if(callback)
 				callback();
 		});
@@ -422,13 +422,13 @@ function parseArticleXML(xml)
 	var pages=$(xml).find("MedlinePgn").text();
 	var mesh=$(xml).find("DescriptorName");
 	var doi=$(xml).find("ArticleId[IdType='doi']").text();
-	
+
 	// title
 	EmptyArticle.title=title;
-	
+
 	// abstract
 	EmptyArticle.abstract=abstract;
-	
+
 	// authors
 	for(i=0;i<authors.length;i++)
 	{
@@ -439,7 +439,7 @@ function parseArticleXML(xml)
 			authors_string+=", ";
 	}
 	EmptyArticle.authors=authors_string;
-	
+
 	// reference
 	for(i=0;i<Math.min(5,authors.length);i++)
 	{
@@ -456,10 +456,10 @@ function parseArticleXML(xml)
 
 	// pmid
 	EmptyArticle.pmid=ArticlePMID;
-	
+
 	// doi
 	EmptyArticle.doi=doi;
-	
+
 	// neurosynth
 	EmptyArticle.neurosynth="";
 
@@ -475,7 +475,7 @@ function addEmptyExperiments(obj)
 {
 	var nexp=parseInt($("input#numNewExperiments").val());
 	var	i;
-	
+
 	if(nexp>0)
 	{
 		$("#new-article-warning").hide();
@@ -484,7 +484,7 @@ function addEmptyExperiments(obj)
 		exp=[];
 		for(i=0;i<nexp;i++)
 			exp.push({"id":100000+i,"title":"","caption":"","locations":["0,0,0"]}); // using 100000 to distinguish from neurosynth/fix ids
-		
+
 		// store empty article in database
 		var result=$.ajax({
 			type: "GET",
@@ -506,9 +506,9 @@ function addEmptyExperiments(obj)
 		}).done(function( msg ){
 			if(debug) console.log(msg);
 		});
-		
+
 		configureExperiments();
-		
+
 		logKeyValue(-1,"UserAction",JSON.stringify("AddEmptyArticle"));
 	}
 }
@@ -527,13 +527,13 @@ function configureMetadata()
 	// Stereotaxic space
 	/*
 	*/
-	
+
 	// Number of subjects
 	/*
 	*/
-	
+
 	configureMeSHDescriptors();
-	
+
 	// Discussion
 	if(meta.comments)
 	for(i=0;i<meta.comments.length;i++)
@@ -546,7 +546,7 @@ function configureMetadata()
 		$("div.comments").append(comment);
 		$("div.comments").append("</p><br \>");
 	}
-	
+
 	if(debug) console.log("[configureMetadata] metadata configured");
 }
 function configureMeSHDescriptors()
@@ -621,18 +621,21 @@ function addExperiment(eid/*iExp*/)
 				ex.locations[j]={
 					x:coords[0],
 					y:coords[1],
-					z:coords[2]
+					z:coords[2],
+					zScore:coords[3]
 				}
 			} else {
 				coords[0]=ex.locations[j].x;
 				coords[1]=ex.locations[j].y;
 				coords[2]=ex.locations[j].z;
+				coords[3]=ex.locations[j].zScore;
 			}
 			var new_row = table.insertRow(j);
 			new_row.innerHTML=[
 				"<td class='coordinate'>"+coords[0]+"</td>",
 				"<td class='coordinate'>"+coords[1]+"</td>",
 				"<td class='coordinate'>"+coords[2]+"</td>",
+				"<td class='coordinate'>"+coords[3]+"</td>",
 				"<td class='input'><input type='image' class='del' src='/img/minus-circle.svg' onclick='delRow(this)'/></td>",
 				"<td class='input'><input type='image' class='add' src='/img/plus-circle.svg' onclick='addRow(this)'/></td>"
 			].join("\n");
@@ -648,7 +651,7 @@ function addExperiment(eid/*iExp*/)
 				parseTable(this,eid/*iExp*/);
 			}
 		});
-		
+
 		// Table actions
 		//--------------
 		// Split table
@@ -669,7 +672,7 @@ function addExperiment(eid/*iExp*/)
 		$(".experiment#"+eid/*iExp*/+" .ontologies").append(addOntology(eid/*iExp*/,"tasks"));
 		$(".experiment#"+eid/*iExp*/+" .ontologies").append(addOntology(eid/*iExp*/,"cognitive"));
 		$(".experiment#"+eid/*iExp*/+" .ontologies").append(addOntology(eid/*iExp*/,"behavioural"));
-		
+
 		// Configure radio button groups for table marks
 		$(".experiment#"+eid/*iExp*/+" input:radio[value='Yes']").attr('name',"radio"+eid/*iExp*/);
 		$(".experiment#"+eid/*iExp*/+" input:radio[value='No']").attr('name',"radio"+eid/*iExp*/);
@@ -688,7 +691,7 @@ function clickOnTable(target)
 	var	div=$(target).closest(".experiment");
 	var eid/*iExp*/=div.attr('id');
 	var	index=$(row).index();
-	
+
 	if(index>=0 && targetClass!="del" && targetClass!="add")
 		selectRow(row,eid/*iExp*/);
 }
@@ -717,7 +720,7 @@ function enterRow(row,eid/*iExp*/) {
 		}
 		if(e.which==9) {	// tab
 			parseTable(row,eid/*iExp*/);
-		}				
+		}
 	});
 }
 function delRow(row)
@@ -726,7 +729,7 @@ function delRow(row)
 	var eid/*iExp*/=par.attr('id');
     var i=$(row).closest("tr").index();
     var ex=findExperimentByEID(eid);
-    
+
     $(".experiment#"+eid/*iExp*/+" .xyztable table")[0].deleteRow(i);
 
     ex.render.scene.remove(ex.locations[i].sph);
@@ -744,20 +747,20 @@ function addRow(row)
 	var table=$(".experiment#"+eid/*iExp*/+" .xyztable table")[0];
     var	inputType=$(row).attr("class");
     var j,new_row;
-    
+
     if(inputType=="addhead")	// if the user clicked on the plus sign in the header, add at the top of the table
     	j=0;
     else
     	j=i+1;
     new_row=table.insertRow(j);
-    
+
     new_row.innerHTML=[
             "<td contentEditable>0</td>",
             "<td contentEditable>0</td>",
             "<td contentEditable>0</td>",
             "<td><input type='image' id='del' src='/img/minus-circle.svg' onclick='delRow(this)'/></td>",
             "<td><input type='image' id='add' src='/img/plus-circle.svg' onclick='addRow(this)'/></td>"].join("\n");
-	
+
 	// intercept enter
 	$(new_row).find('td[contentEditable]').each(function(){enterRow(this,eid/*iExp*/);});
 
@@ -790,7 +793,7 @@ function splitTable(eid/*iExp*/,irow) {
 		locations: newLocations
 	};
 	exp.splice(iExp+1, 0, newExp);
-	
+
 	configureExperiments();
 	saveExperiments();
 
@@ -815,7 +818,7 @@ function importTable(eid) {
 		// init text with current table data
 		for(i=0;i<ex.locations.length;i++)
 			$("#text").append(ex.locations[i].x+","+ex.locations[i].y+","+ex.locations[i].z+"<br />\n");
-		
+
 		var parse_button=$("#parse_button");
 		var import_button=$("#import_button");
 		var	cancel_button=$("#cancel_button");
@@ -825,7 +828,7 @@ function importTable(eid) {
 			var arr=$("#text").html().split(/<br>|<\/p>|<div>/);
 			var i,j,k;
 			var val,num;
-	
+
 			// (lines are easier to split from html(),
 			// but values are easier to parse from text())
 			for(i=0;i<arr.length;i++) {
@@ -839,7 +842,7 @@ function importTable(eid) {
 			for(i=0;i<arr.length;i++) {
 				val=arr[i].split(",");
 				k=0;
-				var xyz=[];		
+				var xyz=[];
 				for(j=0;j<val.length;j++) {
 					var num1=val[j].replace(/["a-zA-Z]/g, "").replace(/\u2212/g, "-"); // minus sign
 					var num=parseFloat(num1);
@@ -900,11 +903,11 @@ function parseTable(row,eid/*iExp*/)
 			ex.locations[i].x=x;
 			ex.locations[i].y=y;
 			ex.locations[i].z=z;
-			
+
 			save(eid/*iExp*/,"locations",JSON.stringify(ex.locations,["x","y","z"]));
 		}
 	}
-		
+
 	// Add location spheres
 	var geometry = new THREE.SphereGeometry(1,16,16);
 	var	color=0xff0000;
@@ -944,7 +947,7 @@ function save(eid/*iExp*/,name,value)
 		ex.title=value;
 	if(name=="caption")
 		ex.caption=value;
-	
+
 	saveExperiments();
 
 	// log user action
@@ -967,7 +970,7 @@ function saveExperiments()
 		else
 			return val;
 	});
-	
+
 	// save to database
 	var result=$.ajax({
 		type: "GET",
@@ -987,7 +990,7 @@ function saveMetadata()
 {
 	// stringify experiments
 	var metadata_string=JSON.stringify(meta);
-	
+
 	// save to database
 	var result=$.ajax({
 		type: "GET",
@@ -1008,7 +1011,7 @@ function addOntology(eid/*iExp*/,ontology)
 	var	str="";
 	var ct="",cts=new Array({ontology:"tasks",title:"Cognitive Atlas Tasks"},{ontology:"cognitive",title:"Cognitive Atlas Cognitive Domains"},{ontology:"behavioural",title:"BrainMap Behavioural Domains"});
 	var	cl;
-	
+
 	for(i=0;i<cts.length;i++)
 		if(cts[i].ontology==ontology)
 			ct=cts[i];
@@ -1026,7 +1029,7 @@ function addTag(eid/*iExp*/,rtag)
 	var prevTag=$("div.experiment#"+eid/*iExp*/+" div.ontology#"+rtag.ontology+" li:contains('"+rtag.name+"')").length;
 	if(prevTag!=0)
 		return;
-		
+
 	var tag=$("<li>",{class:'tag'});
 	tag.html(rtag.name);
 	tag.click({rtag:rtag},function(e){openTagModal(eid/*iExp*/,e.data.rtag)});
@@ -1046,7 +1049,7 @@ function updateTagColor(tag,rtag)
 
 	if(rtag.agree==0&&rtag.disagree==0)
 		return;
-	
+
 	if(rtag.agree-rtag.disagree>0)
 		tag.addClass('green');
 	else
@@ -1059,7 +1062,7 @@ function findTag(tags,name,ontology)
 {
 	var	j,found=0;
 	var	ob;
-	
+
 	if(tags)
 	for(j=0;j<tags.length;j++)
 	{
@@ -1200,7 +1203,7 @@ function openOntologyModal(eid/*iExp*/,ontology)
 	$('#fade').show();
 	$('#light #eid').html(parseInt(eid));
 	$('#light #ontology').html(ontology);
-	
+
 	configureOntologyModal();
 	resizeOntologyModal();
 }
@@ -1226,7 +1229,7 @@ function openTagModal(eid/*iExp*/,rtag)
 {
 	if(debug) console.log("[openTagModal]");
 	var	obj=0;
-	
+
 	if(eid/*iExp*/>-1) {
 		var ex=findExperimentByEID(eid);
 		obj=findTag(ex.tags,rtag.name,rtag.ontology);
@@ -1240,7 +1243,7 @@ function openTagModal(eid/*iExp*/,rtag)
 	$('#boxfade').show();
 	$('#box #eid').html(eid/*iExp*/);
 	$('#box #ontology').html(rtag.ontology);
-	
+
 	configureTagModal(rtag);
 	resizeTagModal();
 }
@@ -1252,9 +1255,9 @@ function closeTagModal(vote)
 	var	name=$('#box h2.name').text();
 	var ontology=$('#box #ontology').text();
 	var	tag;
-	
+
 	// Vote -2:retract, 0:cancel, -1:down-vote or 1:up-vote
-	if(vote!=0)	
+	if(vote!=0)
 	{
 		// find the tag
 		if(eid/*iExp*/>=0)	// iExp is >=0 for tables, =-1 for article-level tags
@@ -1264,7 +1267,7 @@ function closeTagModal(vote)
 			// experiment
 			if(!(ex.tags))
 				ex.tags=new Array;
-			
+
 			// check whether the currently voted tag was already among
 			// the experiment's tags
 			obj=findTag(ex.tags,name,ontology);
@@ -1314,7 +1317,7 @@ function closeTagModal(vote)
 			else
 				rtag.disagree=disagree+1;
 		}
-		
+
 		// Update tag display and save total tag votes (total agree/disagree stats)
 		if(eid/*iExp*/>=0)
 		{
@@ -1521,7 +1524,7 @@ function initTranslucentBrain(eid/*iExp*/)
 
 	// create a scene
 	ex.render.scene = new THREE.Scene();
-	
+
 	// create projector (for hit detection)
 	ex.render.projector = new THREE.Projector();
 	ex.render.renderer.domElement.addEventListener( 'mousedown', function(e){onDocumentMouseDown(e,eid/*iExp*/);}, false );
@@ -1538,7 +1541,7 @@ function initTranslucentBrain(eid/*iExp*/)
 
 	// allow 'p' to make screenshot
 	//THREEx.Screenshot.bindKey(renderer);
-	
+
 	// Add lights
 	var	light	= new THREE.AmbientLight( 0x3f3f3f);
 	ex.render.scene.add(light );
@@ -1557,11 +1560,11 @@ function initTranslucentBrain(eid/*iExp*/)
 	{
 		var tmp=this.response;
 		var modifier = new THREE.SubdivisionModifier(1);
-		
+
 		ex.render.material=new THREE.ShaderMaterial({
-			uniforms: { 
+			uniforms: {
 				coeficient	: {
-					type	: "f", 
+					type	: "f",
 					value	: 1.0
 				},
 				power		: {
@@ -1599,10 +1602,10 @@ function initTranslucentBrain(eid/*iExp*/)
 			transparent	: true,
 			depthWrite	: false,
 		});
-		
+
 		ex.render.geometry=new THREE.PLYLoader().parse(tmp);
 		ex.render.geometry.sourceType = "ply";
-		
+
 		modifier.modify(ex.render.geometry);
 		for(i=0;i<ex.render.geometry.vertices.length;i++)
 		{
@@ -1629,7 +1632,7 @@ function onDocumentMouseDown( event,eid/*iExp*/ ) {
 	mouseVector = new THREE.Vector3();
 	mouseVector.x= ((event.clientX-r.left) / event.target.clientWidth ) * 2 - 1;
 	mouseVector.y=-((event.clientY-r.top) / event.target.clientHeight ) * 2 + 1;
-	
+
 	var raycaster = projector.pickingRay( mouseVector.clone(), ex.render.camera );
 	var intersects = raycaster.intersectObjects( ex.render.spheres.children );
 
@@ -1656,7 +1659,7 @@ function animate()
 function render(iExp) {
 	// update camera controls
 	exp[iExp].render.cameraControls.update();
-	
+
 	// actually render the scene
 	exp[iExp].render.renderer.render(exp[iExp].render.scene,exp[iExp].render.camera );
 }
