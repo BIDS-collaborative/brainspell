@@ -12,8 +12,13 @@ configured docker-compose installation, you should be able to execute
 on port 8000 in your web browser (note that Dav has experienced some trouble
 with Chrome, so probably use another browser for now).
 
-If you are using Docker Machine, don't forget that you'll need to initialize
-your docker host with the following commands (or the equivalent) prior to
+If you don't have docker and docker-compose, you will need to install these.
+Please refer to the install instructions for operating system. 
+
+If you are on Windows and OSX you will need a host (most likely you will be using
+Docker Machine), in that case don't forget that you'll need to initialize your docker 
+host with the following commands (or the equivalent) prior to
+
 running `docker-compose up`:
 
     docker-machine start
@@ -28,7 +33,7 @@ the terminal. Alternatively you can run `docker-compose up -d` to have it run in
 the background. CTR-C or run `docker-compose stop` to stop the containters. 
 
 On a linux install, the brainspell search did not work until you the 
-LuceneIndex directory was made writable by all, in the brainspell repository run:
+LuceneIndex directory was made writable by all, in the brainspell/site/php directory run:
 `chmod a+w LuceneIndex/*` or `sudo chmod a+w LuceneIndex/*`
 
 
